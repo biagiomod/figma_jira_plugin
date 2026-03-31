@@ -1,0 +1,47 @@
+##
+## figma-panel.vm — Velocity template for the Figma Designs web panel
+##
+## Rendered in the Jira issue view right sidebar.
+## Displays an iframe pointing to the bundled React frontend.
+##
+## Context variables (from FigmaPanelContextProvider):
+##   $issueKey    — Jira issue key, e.g. PROJ-123
+##   $isConfigured — boolean, false if admin has not configured the plugin
+##   $pluginKey   — plugin key for web resource URL construction
+##
+#if (!$isConfigured)
+<div style="padding: 16px; font-family: sans-serif; color: #42526E; font-size: 14px;">
+  <strong>Figma integration is not configured.</strong>
+  <p style="margin-top: 8px;">
+    Please ask your Jira administrator to configure the Figma integration at:<br>
+    <a href="$req.contextPath/plugins/servlet/figma-jira/admin">Admin &gt; Add-ons &gt; Figma Integration</a>
+  </p>
+</div>
+#else
+<div id="figma-jira-panel-mount" style="width: 100%; min-height: 400px;">
+  <iframe
+    id="figma-jira-panel-iframe"
+    src="$req.contextPath/download/resources/${pluginKey}:figma-jira-frontend/index.html?issueKey=${issueKey}"
+    style="width: 100%; min-height: 400px; border: none; display: block;"
+    title="Figma Designs"
+    sandbox="allow-scripts allow-same-origin allow-forms"
+  ></iframe>
+</div>
+
+<script>
+  // Auto-resize the iframe to fit its content.
+  // The React app posts a message with its height when content changes.
+  (function () {
+    var iframe = document.getElementById('figma-jira-panel-iframe');
+    if (!iframe) return;
+
+    window.addEventListener('message', function (event) {
+      // Only accept messages from the same origin (same Jira instance)
+      if (event.source !== iframe.contentWindow) return;
+      if (event.data && event.data.type === 'figma-jira-resize') {
+        iframe.style.minHeight = (event.data.height + 32) + 'px';
+      }
+    });
+  })();
+</script>
+#end

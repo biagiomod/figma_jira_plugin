@@ -1,0 +1,22 @@
+{
+  "name": "@figma-jira/infra",
+  "version": "0.0.1",
+  "private": true,
+  "description": "AWS CDK infrastructure for figma-jira sync-service",
+  "scripts": {
+    "build": "tsc",
+    "cdk": "cdk",
+    "deploy": "cdk deploy --require-approval never",
+    "diff": "cdk diff",
+    "synth": "cdk synth"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.147.3",
+    "constructs": "^10.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "aws-cdk": "^2.147.3",
+    "typescript": "^5.4.5"
+  }
+}

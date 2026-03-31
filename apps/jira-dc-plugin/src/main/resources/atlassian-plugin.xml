@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Jira DC Plugin Descriptor — figma-jira-dc
+
+  Extension points used:
+    - web-panel:        renders the Figma Designs panel in the issue view
+    - rest:             exposes /rest/figma-jira/1.0/... proxy endpoints
+    - web-resource:     serves the bundled React frontend assets
+    - web-section +
+      web-item:         adds the admin config page to Jira Admin menu
+    - component-import: injects Jira SAL services
+
+  Design note: This plugin is intentionally thin. All business logic,
+  Figma API calls, and persistence live in the AWS sync service.
+  This plugin owns: Jira extension registration, REST proxy, admin config storage.
+-->
+<atlassian-plugin key="${atlassian.plugin.key}" name="Figma for Jira DC" plugins-version="2">
+
+  <plugin-info>
+    <description>Internal Figma integration for Jira Data Center. Links Figma designs to issues.</description>
+    <version>${project.version}</version>
+    <vendor name="Your Organization" url="https://yourorg.com"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="atlassian-data-center-compatible">true</param>
+  </plugin-info>
+
+  <!-- =================================================================
+       SAL service imports
+       ================================================================= -->
+
+  <component-import key="pluginSettingsFactory"
+                    interface="com.atlassian.sal.api.pluginsettings.PluginSettingsFactory"/>
+
+  <component-import key="transactionTemplate"
+                    interface="com.atlassian.sal.api.transaction.TransactionTemplate"/>
+
+  <!-- =================================================================
+       REST module — thin proxy to AWS sync service
+       All routes under /rest/figma-jira/1.0/
+       ================================================================= -->
+
+  <rest key="figma-jira-rest"
+        name="Figma Jira REST API"
+        path="/figma-jira"
+        version="1.0">
+    <description>
+      Thin REST proxy. Forwards requests to the AWS API Gateway, adding
+      x-api-key, X-Jira-User, and X-Jira-Issue headers. No business logic here.
+    </description>
+  </rest>
+
+  <!-- =================================================================
+       Web resources — React frontend bundle
+       Built by Vite into src/main/resources/static/ at plugin build time.
+       ================================================================= -->
+
+  <web-resource key="figma-jira-frontend"
+                name="Figma Jira Frontend Resources">
+    <transformation extension="soy">
+      <transformer key="soyTransformer"/>
+    </transformation>
+    <!-- TODO: After running `pnpm build` in frontend/, the output
+         lands in src/main/resources/static/. Update this path to
+         match your Vite output directory. -->
+    <resource type="download" name="index.html" location="/static/index.html"/>
+    <resource type="download" name="assets/" location="/static/assets/"/>
+    <context>jira.view.issue</context>
+  </web-resource>
+
+  <!-- =================================================================
+       Web panel — Figma Designs panel in the issue view
+       Renders an iframe pointing to the React frontend.
+       ================================================================= -->
+
+  <web-panel key="figma-designs-panel"
+             name="Figma Designs"
+             location="atl.jira.view.issue.right.context"
+             weight="100">
+    <description>Shows linked Figma designs for this issue.</description>
+    <context-provider class="com.yourorg.figurajira.rest.FigmaPanelContextProvider"/>
+    <resource name="view" type="velocity" location="templates/figma-panel.vm"/>
+    <label key="figma.panel.title"/>
+    <condition class="com.atlassian.jira.plugin.webfragment.conditions.IsLoggedInUserCondition"/>
+  </web-panel>
+
+  <!-- =================================================================
+       Admin configuration
+       Adds "Figma Integration" link under Jira Admin > Add-ons
+       ================================================================= -->
+
+  <web-section key="figma-admin-section"
+               name="Figma Integration"
+               location="admin_plugins_menu"
+               weight="200">
+    <label key="figma.admin.section.label"/>
+  </web-section>
+
+  <web-item key="figma-admin-link"
+            name="Figma Integration Settings"
+            section="admin_plugins_menu/figma-admin-section"
+            weight="10">
+    <label key="figma.admin.link.label"/>
+    <link linkId="figma-admin-link">/plugins/servlet/figma-jira/admin</link>
+  </web-item>
+
+  <!-- =================================================================
+       i18n
+       ================================================================= -->
+
+  <resource type="i18n" name="i18n" location="figma-jira-i18n"/>
+
+</atlassian-plugin>

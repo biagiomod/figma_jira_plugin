@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.yourorg</groupId>
+  <artifactId>figma-jira-dc-plugin</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>atlassian-plugin</packaging>
+
+  <name>Figma for Jira DC</name>
+  <description>
+    Internal Figma integration for Jira Data Center.
+    Links Figma designs to Jira issues and shows previews in the issue view.
+  </description>
+
+  <properties>
+    <jira.version>9.12.0</jira.version>
+    <amps.version>8.13.2</amps.version>
+    <java.version>11</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- Update this to your org's plugin key -->
+    <atlassian.plugin.key>com.yourorg.figma-jira-dc</atlassian.plugin.key>
+  </properties>
+
+  <dependencies>
+    <!-- Jira API — provided by the container at runtime -->
+    <dependency>
+      <groupId>com.atlassian.jira</groupId>
+      <artifactId>jira-api</artifactId>
+      <version>${jira.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Plugin Settings API (for storing admin config) -->
+    <dependency>
+      <groupId>com.atlassian.sal</groupId>
+      <artifactId>sal-api</artifactId>
+      <version>4.4.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- REST support via Jersey (provided by Jira) -->
+    <dependency>
+      <groupId>com.atlassian.plugins.rest</groupId>
+      <artifactId>atlassian-rest-common</artifactId>
+      <version>6.3.2</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- JSON serialization -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.10.1</version>
+    </dependency>
+
+    <!-- HTTP client for proxying to AWS API Gateway -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.14</version>
+    </dependency>
+
+    <!-- Test -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>5.11.0</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.atlassian.maven.plugins</groupId>
+        <artifactId>jira-maven-plugin</artifactId>
+        <version>${amps.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <productVersion>${jira.version}</productVersion>
+          <productDataVersion>${jira.version}</productDataVersion>
+          <enableQuickReload>true</enableQuickReload>
+          <jvmArgs>-Xmx2g -Xms512m</jvmArgs>
+          <instructions>
+            <Atlassian-Plugin-Key>${atlassian.plugin.key}</Atlassian-Plugin-Key>
+            <Export-Package/>
+            <Import-Package>
+              com.atlassian.jira.*;version="0.0.0",
+              com.atlassian.sal.*;version="0.0.0",
+              com.atlassian.plugins.rest.*;version="0.0.0",
+              javax.ws.rs.*;version="0.0.0",
+              javax.servlet.*;version="0.0.0",
+              *
+            </Import-Package>
+          </instructions>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>atlassian-public</id>
+      <url>https://packages.atlassian.com/maven/repository/public</url>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>atlassian-public</id>
+      <url>https://packages.atlassian.com/maven/repository/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
+</project>
