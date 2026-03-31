@@ -196,7 +196,10 @@ export async function registerWebhook(
     },
     body: JSON.stringify({
       event_type: 'FILE_UPDATE',
-      team_id: null, // TODO: team_id may be required for non-personal tokens — confirm with Figma API docs
+      // team_id: Figma webhook v2 API accepts null for file-level webhooks when using a personal
+      // token or a service token with file-level scope. If webhook registration fails with 403,
+      // verify whether your token type requires a team_id. See Figma API docs: /v2/webhooks
+      team_id: null,
       file_key: fileKey,
       endpoint: webhookEndpointUrl,
       passcode,

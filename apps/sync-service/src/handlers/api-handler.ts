@@ -133,7 +133,7 @@ export const handler = async (
 
     // POST /issues/{issueKey}/links/{linkId}/sync
     if (method === 'POST' && linkId && subResource === 'sync') {
-      return await handleSyncLink(event, issueKey, linkId)
+      return await handleSyncLink(event, linkId)
     }
 
     return { statusCode: 404, headers: JSON_HEADERS, body: JSON.stringify({ error: { code: 'NOT_FOUND', message: 'Route not found' } }) }
@@ -215,8 +215,7 @@ async function handleUpdateStatus(
 }
 
 async function handleSyncLink(
-  event: APIGatewayProxyEventV2,
-  issueKey: string,
+  _event: APIGatewayProxyEventV2,
   linkId: string,
 ): Promise<APIGatewayProxyResultV2> {
   const db = await getDb()

@@ -32,12 +32,12 @@ export function AdminPage() {
     setErrorMsg('')
 
     try {
-      // TODO: Replace with actual servlet POST call
-      // await fetch('/plugins/servlet/figma-jira/admin/config', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(config),
-      // })
+      // TODO: Wire to Java admin servlet
+      // Implement AdminServlet.java at /rest/figma-jira/1.0/admin (GET + POST)
+      // GET: return { apiGatewayUrl: string, apiKey: string } from PluginConfig
+      // POST: save { apiGatewayUrl: string, apiKey: string } via PluginConfig
+      // Register the servlet in atlassian-plugin.xml under <rest> with path="/admin"
+      // Then replace this mock submission with: fetch('/rest/figma-jira/1.0/admin', { method: 'POST', ... })
       await new Promise((r) => setTimeout(r, 500))  // placeholder
       setStatus('saved')
     } catch (err) {

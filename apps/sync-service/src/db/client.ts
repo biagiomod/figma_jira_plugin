@@ -36,6 +36,8 @@ export async function getDb(): Promise<Kysely<Database>> {
 
   const pool = new Pool({
     connectionString: secrets.dbConnectionString,
+    // Pool max of 5 matches Lambda's default concurrency — each Lambda instance should hold at
+    // most 1 connection. Increase only if Lambda concurrency is explicitly set higher.
     max: 5,
     idleTimeoutMillis: 30_000,
     connectionTimeoutMillis: 5_000,

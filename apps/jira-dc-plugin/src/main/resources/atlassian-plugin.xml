@@ -107,6 +107,8 @@
        i18n
        ================================================================= -->
 
+  <!-- i18n: Create apps/jira-dc-plugin/src/main/resources/figma-jira-i18n.properties
+       with the keys referenced here before running mvn package -->
   <resource type="i18n" name="i18n" location="figma-jira-i18n"/>
 
 </atlassian-plugin>

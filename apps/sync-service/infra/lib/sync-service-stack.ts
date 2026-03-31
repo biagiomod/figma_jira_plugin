@@ -83,7 +83,9 @@ export class SyncServiceStack extends cdk.Stack {
       SECRETS_MANAGER_SECRET_NAME: secret.secretName,
       THUMBNAIL_BUCKET_NAME: thumbnailBucket.bucketName,
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
-      // TODO: Set WEBHOOK_ENDPOINT_URL after API Gateway is deployed
+      // WEBHOOK_ENDPOINT_URL: set this to the WebhookUrl CDK output value after first deploy.
+      // Steps: 1) deploy, 2) copy WebhookUrl output, 3) set this value, 4) redeploy.
+      // The api-handler and polling-sync use this to register Figma webhooks.
       WEBHOOK_ENDPOINT_URL: '',
     }
 
