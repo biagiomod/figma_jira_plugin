@@ -34,9 +34,8 @@ export async function storeThumbnail(
   try {
     const imageResponse = await fetch(figmaImageUrl)
     if (!imageResponse.ok) {
-      console.warn(
-        `[thumbnail] Failed to download from Figma (${imageResponse.status}): ${figmaImageUrl}`,
-      )
+      // Do not log figmaImageUrl — Figma image URLs contain signed tokens in query params.
+      console.warn(`[thumbnail] Failed to download from Figma (${imageResponse.status})`)
       return null
     }
 
