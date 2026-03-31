@@ -1,0 +1,35 @@
+{
+  "name": "@figma-jira/project-intro-video",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Remotion intro video for Figma for Jira Data Center",
+  "scripts": {
+    "preview": "remotion studio",
+    "render": "remotion render FigmaJiraDCIntro out/figma-jira-dc-intro.mp4 --codec=h264",
+    "build": "remotion render FigmaJiraDCIntro out/figma-jira-dc-intro.mp4 --codec=h264",
+    "still": "remotion still FigmaJiraDCIntro out/still.png",
+    "upgrade": "remotion upgrade"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.237",
+    "remotion": "^4.0.237"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "remotion": {
+    "entryPoint": "./src/index.ts"
+  }
+}
