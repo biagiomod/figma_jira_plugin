@@ -8,7 +8,7 @@ A Remotion video package that produces a 90-second (1920×1080, 30fps) intro and
 
 A polished, enterprise-appropriate 90-second video covering:
 
-1. **Scene 1 (0–18s):** The problem — design, Jira, and Slack are disconnected
+1. **Scene 1 (0–18s):** The problem — design, Jira, and Teams are disconnected
 2. **Scene 2 (18–30s):** The cost — status ambiguity, handoff uncertainty, rework
 3. **Scene 3 (30–48s):** The solution — Figma designs linked directly in Jira
 4. **Scene 4 (48–66s):** Change detection — webhook sync and polling fallback
@@ -176,7 +176,7 @@ src/
   components/
     StatusChip.tsx       # Design status badge (Ready for Dev, Changes After Dev, etc.)
     DesignCard.tsx       # Figma design preview card shown in Jira panel
-    ToolCard.tsx         # Figma/Jira/Slack tool cards in Scene 1
+    ToolCard.tsx         # Figma/Jira/Teams tool cards in Scene 1
     ArchNode.tsx         # Architecture diagram nodes, arrows, zone labels
     CostCard.tsx         # Cost/friction cards in Scene 2
     Typography.tsx       # Heading, Body, Label, Caption text components

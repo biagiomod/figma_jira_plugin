@@ -6,7 +6,7 @@
 
 ## Problem Statement
 
-Design teams work in Figma. Engineering teams work in Jira. When a design changes, the update does not automatically surface in Jira. Developers check Figma manually, lose track of what is current, and occasionally build from outdated specs. There is no reliable, visible signal for "this design is ready to build." The result is rework, clarification overhead in Slack, and slower, less confident handoff.
+Design teams work in Figma. Engineering teams work in Jira. When a design changes, the update does not automatically surface in Jira. Developers check Figma manually, lose track of what is current, and occasionally build from outdated specs. There is no reliable, visible signal for "this design is ready to build." The result is rework, clarification overhead in Teams, and slower, less confident handoff.
 
 For teams on Jira Data Center, the Figma for Jira integration available on Atlassian Cloud is not accessible. The tooling gap is real, and internal workarounds — shared links, Confluence embeds, status comments — are inadequate substitutes.
 
@@ -30,7 +30,7 @@ For teams on Jira Data Center, the Figma for Jira integration available on Atlas
 ## Narrative Spine
 
 1. **The problem is familiar:** Design context is fragmented. Jira issues lack reliable links to what was actually designed.
-2. **The cost is real:** Rework, Slack clarification threads, and "which version is this?" delays compound over time.
+2. **The cost is real:** Rework, Teams clarification threads, and "which version is this?" delays compound over time.
 3. **The Cloud app proves the value:** Figma for Jira (Cloud) demonstrates that linking designs directly to issues reduces friction — but it is not available on Data Center.
 4. **Our project fills the gap:** A Jira DC-native internal implementation that delivers the core value: linked designs, visible thumbnails, change detection, and a reliable "Ready for Dev" signal.
 5. **It is built correctly:** Secure AWS-backed architecture, no hardcoded secrets, internal-only deployment, tested codebase ready for engineering handoff.
@@ -41,7 +41,7 @@ For teams on Jira Data Center, the Figma for Jira integration available on Atlas
 
 1. **Design context belongs in Jira, not across browser tabs.**
 2. **When a Figma file changes, the linked Jira issues should surface that change automatically.**
-3. **"Ready for Dev" should be a visible, reliable state — not a question you ask in Slack.**
+3. **"Ready for Dev" should be a visible, reliable state — not a question you ask in Teams.**
 4. **This is a Jira Data Center-native solution — not a Cloud workaround, not a Marketplace plugin.**
 5. **It is built for internal use: secure, auditable, and deployable on your infrastructure.**
 

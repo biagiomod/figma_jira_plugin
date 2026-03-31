@@ -7,14 +7,14 @@ import { Heading, Body } from '../components/Typography';
 const LINES = [
   'Design lives in Figma.',
   'Work lives in Jira.',
-  'Updates travel through Slack.',
+  'Updates travel through Teams.',
   'Something is always out of sync.',
 ];
 
 const TOOL_CARDS = [
   { name: 'Figma', icon: '◈', subtitle: 'Design files', accentColor: tokens.colors.accent },
   { name: 'Jira', icon: '◉', subtitle: 'Issue tracker', accentColor: tokens.colors.accentJira },
-  { name: 'Slack', icon: '◎', subtitle: 'Update thread', accentColor: '#4A154B' },
+  { name: 'Teams', icon: '◎', subtitle: 'Update thread', accentColor: '#6264A7' },
 ];
 
 export const Scene1Problem: React.FC = () => {

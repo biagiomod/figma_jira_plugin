@@ -9,14 +9,14 @@
 ### On-screen text:
 1. "Design lives in Figma."
 2. "Work lives in Jira."
-3. "Updates travel through Slack."
+3. "Updates travel through Teams."
 4. "Something is always out of sync."
 
 ### Voiceover:
-> "Your designers work in Figma. Your developers track work in Jira. When something changes in a design, that update travels through Slack — or it doesn't. By the time a developer builds from the spec, nobody is sure if it's the latest version."
+> "Your designers work in Figma. Your developers track work in Jira. When something changes in a design, that update travels through Teams — or it doesn't. By the time a developer builds from the spec, nobody is sure if it's the latest version."
 
 ### Timing notes:
-- Tool cards (Figma, Jira, Slack) animate in sequentially starting at frame 10
+- Tool cards (Figma, Jira, Teams) animate in sequentially starting at frame 10
 - Gap indicators appear at frame 70 to suggest disconnection
 - Text lines stagger in starting at frame 100 (~3.3s)
 - Last line ("Something is always out of sync.") uses amber color for emphasis
