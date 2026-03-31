@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Figma for Jira Data Center — Internal Tool</title>
+  <meta name="description" content="Link Figma designs to Jira issues, surface design changes automatically, and give your engineering team a reliable handoff signal. Built for Jira Data Center." />
+  <link rel="stylesheet" href="styles.css" />
+  <!--
+    FONTS: This page uses the system Inter/SF Pro stack — no external font load required.
+    To load Inter from Google Fonts, uncomment the line below:
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  -->
+</head>
+<body>
+
+  <!-- ============================================================
+       SECTION 1: HERO
+       ============================================================ -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+
+        <!-- Left: text -->
+        <div class="hero-text">
+          <span class="label-caps" style="color: #7B61FF; margin-bottom: 16px; display: block;">Figma for Jira Data Center</span>
+          <h1>Design context,<br>directly in Jira.</h1>
+          <p class="hero-subhead">
+            Link Figma files and frames to Jira issues, surface design changes automatically,
+            and give your team a reliable signal when designs are ready to build.
+          </p>
+          <div class="hero-ctas">
+            <a href="#contact" class="btn-primary">Request the starter package</a>
+            <a href="#architecture" class="btn-secondary-link">View the architecture →</a>
+          </div>
+          <div class="hero-trust">
+            <span class="hero-trust-item">Jira Data Center-native</span>
+            <span class="hero-trust-item">AWS-backed</span>
+            <span class="hero-trust-item">Internal deployment</span>
+          </div>
+        </div>
+
+        <!-- Right: visual placeholder -->
+        <div class="hero-visual">
+          <!--
+            REPLACE THIS PLACEHOLDER:
+            Insert a screenshot or mockup of the Jira issue page showing the
+            Figma Designs panel with a linked thumbnail, metadata, and status chip.
+            Recommended size: 480×360px or 2:1.5 aspect ratio.
+            Suggested file: hero-mockup.png in this directory.
+          -->
+          <div class="placeholder-box" style="width: 100%; min-height: 340px;">
+            <span class="placeholder-icon">🖼</span>
+            <span class="placeholder-label">
+              [HERO VISUAL: Jira issue page with Figma Designs panel]<br>
+              <span style="opacity:0.7; font-size: 12px;">Replace with a screenshot of the plugin UI — linked thumbnail, metadata, status chip visible on a Jira issue.</span>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 2: PROBLEM
+       ============================================================ -->
+  <section id="problem">
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title">Design context is scattered. Your team pays the cost.</h2>
+      </div>
+
+      <div class="problem-grid">
+
+        <div class="card problem-card">
+          <span class="problem-card-icon">?</span>
+          <h3>"Which version is this?"</h3>
+          <p>Developers check Figma manually and can't be sure what's current. The Jira issue doesn't know a newer design exists.</p>
+        </div>
+
+        <div class="card problem-card">
+          <span class="problem-card-icon">⏸</span>
+          <h3>"Is this ready to build?"</h3>
+          <p>Handoff status lives in Slack messages and informal check-ins — not in your issue tracker where the work is tracked.</p>
+        </div>
+
+        <div class="card problem-card">
+          <span class="problem-card-icon">↩</span>
+          <h3>Rework after discovery</h3>
+          <p>Design changes found mid-sprint, after work has already started. The later the discovery, the higher the cost.</p>
+        </div>
+
+      </div>
+
+      <p class="problem-summary">
+        When design and engineering tools don't share context, friction compounds across every sprint.
+        Small ambiguities become rework. Rework becomes delay.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3: SOLUTION OVERVIEW
+       ============================================================ -->
+  <section id="solution">
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title">Figma designs, visible and trackable inside Jira.</h2>
+      </div>
+
+      <p class="solution-description">
+        Figma for Jira Data Center is a Jira DC plugin and AWS sync service that links Figma resources
+        directly to Jira issues. Your team sees current design thumbnails, metadata, and status
+        without leaving Jira. Built for Jira Data Center — not adapted from a Cloud workaround.
+      </p>
+
+      <div class="solution-arch-points">
+
+        <div class="card arch-point">
+          <span class="arch-point-label">Jira Layer</span>
+          <h3>Thin Jira DC plugin</h3>
+          <p>A Java P2 plugin that acts as a proxy only. No business logic, no secrets stored in Jira.</p>
+        </div>
+
+        <div class="card arch-point">
+          <span class="arch-point-label">Sync Layer</span>
+          <h3>AWS sync service</h3>
+          <p>3 Lambda functions, RDS PostgreSQL, S3 thumbnail cache, and Secrets Manager. Your infrastructure, your control.</p>
+        </div>
+
+        <div class="card arch-point">
+          <span class="arch-point-label">Figma API</span>
+          <h3>Webhooks + polling fallback</h3>
+          <p>Change detection via Figma webhooks with a 30-minute polling fallback. No real-time dependency required.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 4: BENEFITS
+       ============================================================ -->
+  <section id="benefits">
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title">What your team gains</h2>
+      </div>
+
+      <div class="benefits-grid">
+
+        <div class="card benefit-card">
+          <span class="benefit-number">01</span>
+          <h3>Stop context switching</h3>
+          <p>Designers and developers share a single source of truth for linked Figma resources, visible on every Jira issue. No tab-switching to check whether a design has changed.</p>
+        </div>
+
+        <div class="card benefit-card">
+          <span class="benefit-number">02</span>
+          <h3>Catch design changes early</h3>
+          <p>When a linked file changes in Figma, the Jira issue updates automatically. No manual checks, no stale links discovered at review time.</p>
+        </div>
+
+        <div class="card benefit-card">
+          <span class="benefit-number">03</span>
+          <h3>Make handoff status explicit</h3>
+          <p>
+            <span class="chip chip-ready">Ready for Dev</span> is a visible state in Jira, not a Slack message.
+            When a design changes after that signal, status transitions to
+            <span class="chip chip-changed">Changes After Dev</span> automatically.
+          </p>
+        </div>
+
+        <div class="card benefit-card">
+          <span class="benefit-number">04</span>
+          <h3>Full audit trail</h3>
+          <p>Every link, status change, and sync event is recorded in the audit log. You have a traceable history of what changed and when — without relying on memory or Slack history.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 5: FEATURES
+       ============================================================ -->
+  <section id="features">
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title">What the plugin does</h2>
+      </div>
+
+      <div class="features-inner">
+
+        <!-- Left: feature list -->
+        <ul class="features-list">
+          <li>Link any Figma file, frame, or prototype to a Jira issue</li>
+          <li>View design thumbnail and metadata directly on the issue page</li>
+          <li>Detect file changes via Figma webhooks, with 30-minute polling fallback</li>
+          <li>Track design status: None, In Progress, Ready for Dev, Changes After Dev</li>
+          <li>Automatic status transition when a change is detected on a ready-to-build design</li>
+          <li>Audit log for all link and sync events</li>
+          <li>Admin-configurable via the Jira admin settings page</li>
+        </ul>
+
+        <!-- Right: status workflow card -->
+        <div class="card status-workflow">
+          <span class="status-workflow-title">Design status workflow</span>
+          <div class="status-flow">
+            <div class="status-step">
+              <span class="chip chip-none">None</span>
+            </div>
+            <div class="status-arrow">↓ designer marks in progress</div>
+            <div class="status-step">
+              <span class="chip chip-in-progress">In Progress</span>
+            </div>
+            <div class="status-arrow">↓ designer signals ready</div>
+            <div class="status-step">
+              <span class="chip chip-ready">Ready for Dev</span>
+            </div>
+            <div class="status-arrow">↓ Figma change detected automatically</div>
+            <div class="status-step">
+              <span class="chip chip-changed">Changes After Dev</span>
+            </div>
+          </div>
+          <p class="status-note">
+            The transition from <strong>Ready for Dev</strong> to <strong>Changes After Dev</strong>
+            is automatic — triggered by the sync service when a change is detected in Figma.
+            No manual action required.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 6: ARCHITECTURE / TECHNICAL OVERVIEW
+       ============================================================ -->
+  <section id="architecture">
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title">Built for your Jira Data Center environment</h2>
+      </div>
+
+      <p style="max-width: 640px; color: var(--color-text-secondary); margin-top: 12px; margin-bottom: 0;">
+        The integration runs entirely within your AWS account. The Jira plugin is a standard
+        P2 plugin for Jira Data Center — no Marketplace, no Cloud dependency.
+      </p>
+
+      <!--
+        REPLACE THIS PLACEHOLDER:
+        Insert an architecture diagram showing the data flow:
+        Jira DC Plugin → API Gateway → Lambda (api-handler / webhook-handler / polling-sync)
+        → RDS PostgreSQL / S3 / Secrets Manager ← Figma API (webhooks)
+        Recommended format: SVG or PNG, width 800px+.
+        Suggested file: architecture-diagram.svg in this directory.
+      -->
+      <div class="placeholder-box arch-diagram-placeholder">
+        <span class="placeholder-icon">📐</span>
+        <span class="placeholder-label">
+          [ARCHITECTURE DIAGRAM]<br>
+          Jira DC Plugin → API Gateway → Lambda (api-handler / webhook-handler / polling-sync)<br>
+          → RDS PostgreSQL / S3 / Secrets Manager ← Figma API (webhooks + polling)<br>
+          <span style="opacity: 0.7; font-size: 12px;">Replace with an architecture diagram SVG or PNG.</span>
+        </span>
+      </div>
+
+      <div class="component-grid">
+
+        <div class="card component-card">
+          <span class="component-card-name">Jira Layer</span>
+          <h3>Jira DC Plugin (Java P2)</h3>
+          <p>Thin HTTP proxy. Routes requests to API Gateway. No stored secrets, no business logic.</p>
+        </div>
+
+        <div class="card component-card">
+          <span class="component-card-name">API Layer</span>
+          <h3>AWS API Gateway</h3>
+          <p>x-api-key authentication. Routes to the appropriate Lambda function.</p>
+        </div>
+
+        <div class="card component-card">
+          <span class="component-card-name">Compute</span>
+          <h3>Lambda Functions</h3>
+          <p>Three functions: api-handler (CRUD), webhook-handler (Figma events), polling-sync (30-min fallback).</p>
+        </div>
+
+        <div class="card component-card">
+          <span class="component-card-name">Database</span>
+          <h3>RDS PostgreSQL</h3>
+          <p>Three tables: design_links, sync_state, audit_events. Deployed inside your VPC.</p>
+        </div>
+
+        <div class="card component-card">
+          <span class="component-card-name">Storage</span>
+          <h3>S3 Thumbnail Cache</h3>
+          <p>Private bucket. Thumbnails are served via pre-signed URLs — never publicly accessible.</p>
+        </div>
+
+        <div class="card component-card">
+          <span class="component-card-name">Secrets</span>
+          <h3>AWS Secrets Manager</h3>
+          <p>All credentials: Figma service token, database password, API key, webhook passcode. None hardcoded.</p>
+        </div>
+
+      </div>
+
+      <div class="arch-security-note">
+        <strong>Secrets posture:</strong> All credentials are stored in AWS Secrets Manager.
+        No secrets are hardcoded in source. The Jira plugin stores only the API Gateway URL
+        and API key in Jira plugin settings — standard Jira configuration, not source code.
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 7: PROOF / STARTER PACKAGE STATUS
+       ============================================================ -->
+  <section id="proof">
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title">A tested, documented starter package</h2>
+      </div>
+
+      <p style="max-width: 600px; color: var(--color-text-secondary); margin-top: 12px;">
+        The current state of the package — verified by compilation and automated tests,
+        not claims.
+      </p>
+
+      <div class="proof-inner">
+
+        <ul class="proof-list">
+          <li>TypeScript compiles cleanly across all packages — zero errors</li>
+          <li>44 unit tests passing: Figma URL parser and status transition logic</li>
+          <li>AWS CDK stack synthesizes to a valid CloudFormation template</li>
+          <li>Full handoff documentation: SETUP.md, HANDOFF.md, SECURITY.md</li>
+          <li>No hardcoded secrets — all credentials via AWS Secrets Manager</li>
+          <li>Documented security posture with explicit credential storage model</li>
+        </ul>
+
+        <div class="honest-note">
+          <span class="honest-note-label">Important context</span>
+          <p>
+            <strong>This is a starter package, not a deployed production system.</strong>
+            It requires infrastructure setup before it is operational: VPC and RDS provisioning,
+            a Figma service token, and CDK deployment to your AWS account.
+            The package provides all source code, CDK infrastructure definitions, and
+            documentation needed to complete that setup.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 8: OBJECTIONS / FAQ
+       ============================================================ -->
+  <section id="faq">
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title">Common questions</h2>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="card faq-item">
+          <h3>We're on Jira Data Center, not Cloud — does this work for us?</h3>
+          <p>
+            Yes. This is a native Jira DC P2 plugin. It is built specifically for the Data Center
+            deployment model and does not depend on Atlassian Cloud infrastructure or the Marketplace.
+          </p>
+        </div>
+
+        <div class="card faq-item">
+          <h3>Is this production-ready?</h3>
+          <p>
+            It is a tested and documented starter package — TypeScript compiles clean, 44 unit tests
+            pass, and the CDK stack synthesizes correctly. Production readiness requires
+            your infrastructure setup: VPC/RDS, a Figma service token, and deployment to your
+            AWS account. The package includes all documentation to guide that process.
+          </p>
+        </div>
+
+        <div class="card faq-item">
+          <h3>Is this secure?</h3>
+          <p>
+            All credentials are stored in AWS Secrets Manager — no secrets are hardcoded anywhere.
+            The S3 bucket is private; thumbnails are accessible only via short-lived pre-signed URLs.
+            A SECURITY.md document covers the full credential storage model and security posture.
+          </p>
+        </div>
+
+        <div class="card faq-item">
+          <h3>How does it connect to Figma without per-user authentication?</h3>
+          <p>
+            The integration uses a single org-level Figma service token, stored in AWS Secrets Manager.
+            There is no per-user OAuth flow. This is appropriate for a single-organization internal
+            deployment where access is controlled at the Jira level.
+          </p>
+        </div>
+
+        <div class="card faq-item">
+          <h3>What is the maintenance overhead?</h3>
+          <p>
+            The sync service is Lambda-based — no servers to provision or patch. Sync runs
+            automatically via Figma webhooks with a 30-minute polling fallback if webhooks
+            are unavailable. Standard AWS CloudWatch logging is included for observability.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 9: FINAL CTA
+       ============================================================ -->
+  <section id="cta-final">
+    <div class="container">
+      <h2 class="section-title">Ready to evaluate the integration?</h2>
+      <p>
+        The starter package includes all source code, CDK infrastructure definitions,
+        documentation, and a setup guide. Request access to begin your engineering evaluation.
+      </p>
+      <a href="#contact" class="btn-primary">Request the starter package</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT ANCHOR
+       Note: "#contact" is a placeholder. Update href on both CTA
+       buttons when you have a real contact form or email link.
+       Example: href="mailto:your-team@yourorg.com?subject=Figma+for+Jira+DC+Starter+Package"
+       ============================================================ -->
+  <span id="contact"></span>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-brand">Figma for Jira Data Center</span>
+        <div class="footer-links">
+          <a href="#" title="Technical documentation placeholder">Technical docs</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <span class="footer-meta">Internal tool · Engineering use only</span>
+      </div>
+      <p class="footer-disclaimer">
+        Not an Atlassian Marketplace product. For internal use only.
+        Figma is a trademark of Figma, Inc. Jira is a trademark of Atlassian.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
